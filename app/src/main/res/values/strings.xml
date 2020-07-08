@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="edit_message">Enter a zipcode</string>
+    <string name="button_zip_update">Update</string>
+    <string name="main_hello_message">Hello, please enter a zipcode below.</string>
+    <string name="sunset_label">Sunset Time:</string>
+    <string name="sunrise_label">Sunrise Time:</string>
+    <string name="humidity_label">Humidity:</string>
+    <string name="refresh_button">Refresh</string>
+    <string name="longitude_label">Longitude:</string>
+    <string name="latitude_label">Latitude:</string>
+    <string name="wind_speed_label">Wind Speed:</string>
+    <string name="wind_deg_label">Wind Deg:</string>
+
+    <color name="blue">#778fa7</color>
+</resources>

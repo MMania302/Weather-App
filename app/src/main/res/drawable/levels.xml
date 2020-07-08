@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<level-list xmlns:android=
+    "http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/icons8_night_64"
+    android:maxLevel="0" />
+</level-list>
