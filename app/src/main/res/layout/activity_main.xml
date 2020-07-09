@@ -7,6 +7,26 @@
     android:background="@color/blue"
     tools:context=".MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="394dp"
+        android:layout_height="39dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph"/>
+
     <EditText
         android:id="@+id/zipEnter"
         android:layout_width="0dp"
@@ -21,6 +41,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainGreetingText" />
+
 
     <Button
         android:id="@+id/newZipButton"
@@ -44,8 +65,9 @@
         android:fontFamily="@font/architects_daughter"
         android:text="@string/main_hello_message"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <ImageView
         android:id="@+id/currentWeatherIcon"
@@ -64,29 +86,42 @@
         android:layout_height="30dp"
         android:layout_marginStart="22dp"
         android:layout_marginLeft="22dp"
+        android:layout_marginTop="8dp"
         android:gravity="left"
         android:text="TextView"
         android:textSize="22sp"
         app:layout_constraintStart_toEndOf="@+id/currentWeatherIcon"
-        app:layout_constraintTop_toTopOf="@+id/thermometerIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/currentLocationName" />
 
     <ImageView
         android:id="@+id/thermometerIcon"
-        android:layout_width="27dp"
-        android:layout_height="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/currentWeatherIcon"
+        android:layout_width="31dp"
+        android:layout_height="51dp"
         app:layout_constraintStart_toStartOf="@+id/currentWeatherIcon"
+        app:layout_constraintTop_toTopOf="@+id/currentTempText"
         app:srcCompat="@drawable/icons8_thermometer_64" />
 
     <TextView
         android:id="@+id/currentTempText"
-        android:layout_width="50dp"
-        android:layout_height="27dp"
+        android:layout_width="61dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:gravity="center_vertical|right"
         android:text="TextView"
-        android:textSize="18sp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/currentWeatherIcon"
-        app:layout_constraintStart_toEndOf="@+id/thermometerIcon" />
+        app:layout_constraintStart_toStartOf="@+id/currentWeatherIcon" />
+
+    <TextView
+        android:id="@+id/tempUnitsLabel"
+        android:layout_width="36dp"
+        android:layout_height="44dp"
+        android:gravity="center_vertical|left"
+        android:text="TextView"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/currentTempText"
+        app:layout_constraintTop_toTopOf="@+id/currentTempText" />
 
     <TextView
         android:id="@+id/currentLocationName"
@@ -117,10 +152,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/sunrise_label"
         app:layout_constraintStart_toEndOf="@+id/currentWeatherIcon"
-        app:layout_constraintTop_toTopOf="@+id/currentWeatherIcon" />
+        app:layout_constraintTop_toBottomOf="@+id/currentWeatherDesc" />
 
     <TextView
         android:id="@+id/sunsetValue"
@@ -187,6 +222,8 @@
         android:id="@+id/longLabel"
         android:layout_width="78dp"
         android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="@string/longitude_label"
         app:layout_constraintStart_toStartOf="@+id/currentWeatherIcon"
@@ -194,7 +231,7 @@
 
     <TextView
         android:id="@+id/longValue"
-        android:layout_width="115dp"
+        android:layout_width="40dp"
         android:layout_height="19dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -204,16 +241,17 @@
 
     <TextView
         android:id="@+id/latLabel"
-        android:layout_width="79dp"
+        android:layout_width="60dp"
         android:layout_height="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:text="@string/latitude_label"
-        app:layout_constraintStart_toStartOf="@+id/longLabel"
-        app:layout_constraintTop_toBottomOf="@+id/longLabel" />
+        app:layout_constraintStart_toEndOf="@+id/longValue"
+        app:layout_constraintTop_toTopOf="@+id/longValue" />
 
     <TextView
         android:id="@+id/latValue"
-        android:layout_width="115dp"
+        android:layout_width="40dp"
         android:layout_height="19dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
@@ -238,14 +276,6 @@
         app:layout_constraintStart_toStartOf="@+id/humidityValue"
         app:layout_constraintTop_toTopOf="@+id/windSpeedLabel" />
 
-    <TextView
-        android:id="@+id/tempUnitsLabel"
-        android:layout_width="39dp"
-        android:layout_height="27dp"
-        android:gravity="center_vertical|left"
-        android:text="TextView"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/currentTempText"
-        app:layout_constraintTop_toTopOf="@+id/currentTempText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
