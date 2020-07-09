@@ -2,14 +2,19 @@ package com.example.weatherapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
+import android.content.Context;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
+
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -39,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String METRIC_UNITS = "&units=metric";
     private static final String IMPERIAL_UNITS = "&units=imperial";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         Button updateButton = findViewById(R.id.newZipButton);
         Button refreshButton = findViewById(R.id.refreshButton);
 
@@ -57,11 +65,19 @@ public class MainActivity extends AppCompatActivity {
         updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /* Get zip code from editText and pass to openWeatherRequest to parse and update UI */
                 EditText editText = (EditText) findViewById(R.id.zipEnter);
                 String userZip = editText.getText().toString();
                 data.setZip(userZip);
                 try { openWeatherRequest(createURLFromZip(userZip), data); }
                 catch (JSONException e) { e.printStackTrace(); }
+
+                editText.setText("");
+                /* Minimize keyboard */
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
             }
         });
 
@@ -189,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
         tmpWindSpd.setText(data.getWindSpd().toString());
         tempUnits.setText("F");
 
+        /* TODO: Figure out why image isn't showing */
         /* Use Picasso image loading library to fetch and load icons from HTTP */
         ImageView tmpIcon = (ImageView) findViewById(R.id.currentWeatherIcon);
         String iconURL = generateIconURL(data.getId().toString());
