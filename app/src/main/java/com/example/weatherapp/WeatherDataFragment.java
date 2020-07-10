@@ -20,17 +20,18 @@ public class WeatherDataFragment extends Fragment {
         return new WeatherDataFragment();
     }
 
-    @Override
+    @Override /* Called to create and asign any (? viewModel ?) variables */
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.weather_data_fragment, container, false);
     }
 
-    @Override
+    @Override /* Called after onCreate() and runs once the view hierarchy is created */
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(WeatherDataViewModel.class);
         // TODO: Use the ViewModel
     }
 
+    /* ??? Create onStart() method ??? */
 }

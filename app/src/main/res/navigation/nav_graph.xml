@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/weatherDataFragment">
-
     <activity
         android:id="@+id/mainActivity"
         android:name="com.example.weatherapp.MainActivity"
